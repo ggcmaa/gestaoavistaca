@@ -32,11 +32,17 @@
     </iframe>
 
     <script>
-        // Define o tempo de atualização (6 minutos = 360.000 milissegundos)
-        setTimeout(function(){
-            location.reload();
-        }, 360000);
-    </script>
+    // 6 minutos = 360.000ms
+    const tempoParaRefresh = 360000;
+
+    console.log("Script carregado. Reiniciando em " + (tempoParaRefresh/1000) + " segundos.");
+
+    setTimeout(function(){
+        console.log("Reiniciando agora...");
+        // Adiciona um parâmetro de tempo na URL para "enganar" o cache
+        window.location.href = window.location.pathname + "?" + new Date().getTime();
+    }, tempoParaRefresh);
+</script>
 
 </body>
 </html>
