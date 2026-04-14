@@ -32,15 +32,19 @@
     </iframe>
 
     <script>
-    // 6 minutos = 360.000ms
-    const tempoParaRefresh = 360000;
+    // 6 minutos em milissegundos
+    const tempoParaRefresh = 360000; 
+    const iframe = document.querySelector('iframe');
+    const urlOriginal = iframe.src;
 
-    console.log("Script carregado. Reiniciando em " + (tempoParaRefresh/1000) + " segundos.");
-
-    setTimeout(function(){
-        console.log("Reiniciando agora...");
-        // Adiciona um parâmetro de tempo na URL para "enganar" o cache
-        window.location.href = window.location.pathname + "?" + new Date().getTime();
+    setInterval(function(){
+        console.log("Atualizando o iframe...");
+        
+        // Adiciona um parâmetro único para forçar o navegador a buscar o iframe novamente
+        // e não usar o cache
+        const novaUrl = urlOriginal + "&timestamp=" + new Date().getTime();
+        iframe.src = novaUrl;
+        
     }, tempoParaRefresh);
 </script>
 
