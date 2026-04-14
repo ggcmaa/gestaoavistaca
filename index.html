@@ -32,21 +32,16 @@
     </iframe>
 
     <script>
-    // 8 minutos em milissegundos
-    const tempoParaRefresh = 480000; 
-    const iframe = document.querySelector('iframe');
-    const urlOriginal = iframe.src;
+        // Define o tempo em milissegundos para recarregar a PÁGINA INTEIRA.
+        // 86400000 ms = 24 horas. 
+        // Isso garante que, uma vez por dia, o navegador busque a versão mais atualizada 
+        // dos seus slides sem interromper sua visualização ao longo do dia.
+        const tempoParaRecarregar = 300000; 
 
-    setInterval(function(){
-        console.log("Atualizando o iframe...");
-        
-        // Adiciona um parâmetro único para forçar o navegador a buscar o iframe novamente
-        // e não usar o cache
-        const novaUrl = urlOriginal + "&timestamp=" + new Date().getTime();
-        iframe.src = novaUrl;
-        
-    }, tempoParaRefresh);
-</script>
+        setTimeout(function(){
+            location.reload();
+        }, tempoParaRecarregar);
+    </script>
 
 </body>
 </html>
